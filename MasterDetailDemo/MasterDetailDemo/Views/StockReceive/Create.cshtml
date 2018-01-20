@@ -1,0 +1,200 @@
+﻿@model Entities.ViewModels.StockReceiveMastViewModel
+@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
+<style>
+	label {
+		width: 12%;
+	}
+
+	th {
+		text-align: center;
+	}
+
+	#PortfolioAccountName {
+		width: 25%;
+	}
+
+	#Remarks {
+		width: 40%;
+	}
+
+	#ValueDate {
+		width: 7.5%;
+	}
+
+	#StockName {
+		width: 100%
+	}
+</style>
+@{
+	ViewBag.Title = "Create Stock Receive";
+}
+<h2>@ViewBag.Title</h2>
+
+<div>
+	<form method="post" id="CreateForm" asp-action="Create" asp-controller="StockReceive">
+		<div>
+
+			<div class="form-group">
+				<label>Value Date</label>
+				<input type="text" asp-for="ValueDate" placeholder="YYYY/MM/DD" />
+			</div>
+			<div class="form-group">
+				<label>Portfolio Ac No.</label>
+				<select asp-items="@(new SelectList(@ViewBag.PortfolioAccountList,"Id","AccountNumber"))" id="selectPortfolioAccountName" onchange="getPortfolioAccountName();" asp-for="PortfolioAcId">
+					<option value="">Select</option>
+				</select>
+				@*<input type=" text" asp-for="PortfolioAccountNumber" />*@
+			</div>
+			<div class="form-group">
+				<label>Portfolio Ac Name</label>
+				<input type="text" asp-for="PortfolioAccountName" readonly="readonly" />
+			</div>
+			<div class="form-group">
+				<label>Remarks</label>
+				<input type="text" asp-for="Remarks" />
+			</div>
+			<div>
+				<table id="StockReceiveDetail">
+					<thead>
+						<tr>
+							<th>Stock Name</th>
+							<th>OwnerShip Date</th>
+							<th>Quantity</th>
+							<th>Rate</th>
+							<th>Amount</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<select asp-items="@(new SelectList(@ViewBag.StockList,"Id","StockName"))" id="StockName">
+									<option value="">Select</option>
+								</select>
+							</td>
+							<td>
+								<input type="text" id="OwnerShipDate" placeholder="YYYY/MM/DD" />
+							</td>
+							<td>
+								<input type="text" id="Quantity" onkeyup="CalculateAmount()" />
+							</td>
+							<td>
+								<input type="text" id="Rate" onkeyup="CalculateAmount();" />
+							</td>
+							<td>
+								<input type="text" id="Amount" />
+							</td>
+							<td>
+								<button type="button" class="btn" id="btn-add" data-target="">Add</button>
+								<button type="button" class="btn " id="btn-clear">Clear</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="form-group">
+				<input type="submit" id="btnSubmit" class="btn btn-facebook" value="Save" asp-action="Create" asp-controller="StockReceive" />
+			</div>
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<h4 class="modal-title" id="myModalLabel">Oopss</h4>
+						</div>
+						<div class="modal-body" id="frmEmp">
+							<div asp-validation-summary="All" class="text-danger"></div>
+						</div>
+						<div class="modal-footer">
+							<input type="submit" id="btnSubmit" class="btn btn-primary" data-dismiss="modal" value="Ok" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</form>
+</div>
+<div>
+	<a asp-action="Index">Back to List</a>
+</div>
+
+
+<script src="~/js/jquery.min.js"></script>
+<script src="~/js/jquery.maskedinput.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function ($) {
+		$("#ValueDate").mask("9999/99/99");
+		$("#OwnerShipDate").mask("9999/99/99")
+		var $table = $('#StockReceiveDetail>tbody');
+		$('#btn-add').click(function () {
+			$this = $(this);
+			var index = parseInt($table.find('tr').length) - 1;
+			var addtr = addRow(index);
+			$table.find('tr:eq(' + index + ')').before(addtr);
+			$this.closest('tr').find(':input').each(function () {
+				$(this).val('');
+			});
+		});
+
+		$("#StockReceiveDetail>tbody").on("click", ".btn-delete", function (index) {
+			$table.find('tr:eq(' + index.currentTarget.id + ')').remove();
+
+		});
+
+
+		formValidate();
+
+	});
+
+	function formValidate() {
+		$("#btnSubmit").click(function () {
+			debugger;
+			if (!$("#CreateForm").valid()) {
+				$("#myModal").modal();
+			}
+		});
+	}
+
+	function CalculateAmount() {
+		$('#Amount').val(parseFloat($('#Quantity').val() * $('#Rate').val()).toFixed(2));
+	};
+
+	function addRow(index) {
+		var addedRow = '<tr>\
+						<td>\
+							<select  name="details[' + index + '].StockId" type="text" readonly="readonly">\
+							<option value="' + $('#StockName').val() + '">' + $('#StockName').find(":selected").text() + '</option>\
+							</select >\
+							</td >\
+		<td><input value="' + $('#OwnerShipDate').val() + '" name="details[' + index + '].OwnerShipDate" readonly=readonly /></td>\
+						<td><input value="' + $('#Quantity').val() + '" name="details[' + index + '].Quantity" readonly=readonly /></td>\
+						<td><input value="' + parseFloat($('#Rate').val()).toFixed(2) + '" name="details[' + index + '].Rate" readonly="readonly" /></td>\
+						<input value="0" name="details[' + index + '].Status" class="form-control input-sm" type="hidden" readonly="readonly" />\
+						<td><input value="' + parseFloat($('#Amount').val()).toFixed(2) + '" name="details[' + index + '].Amount" readonly="readonly" /></td>\
+						<td><a class="table-action-nav-btn btn btn-sm btn-delete" title="Delete" id="'+ index + '">Delete</a>\
+					</tr>\ ';
+		return addedRow;
+
+	}
+
+
+	function getPortfolioAccountName() {
+		debugger;
+		$.ajax({
+			url: "/StockReCeive/GetPortfolioAccountName",
+			type: 'GET',
+			dataType: 'Json',
+			data: { "id": $("#selectPortfolioAccountName").val() },
+			success: function (result) {
+				$('#PortfolioAccountName').val(result);  //or use forech loop to get record
+			},
+			error: function (xhr, status) {
+				swal('Some problem occur !', '', 'error')
+			}
+		});
+
+	}
+</script>

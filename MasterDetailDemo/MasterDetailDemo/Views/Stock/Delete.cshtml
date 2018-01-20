@@ -1,0 +1,57 @@
+﻿@model Entities.Models.Stock
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+	ViewBag.Title = "Confirm to Delete Stock ?";
+
+}
+<h3>@ViewBag.Title</h3>
+<div class="col-md-3">
+	<form method="post" asp-action="Delete" asp-controller="Stock">
+		<table class="table">
+			<tr>
+				<td>
+					@Html.DisplayNameFor(modelItem => Model.Id)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => Model.Id)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					@Html.DisplayNameFor(modelItem => Model.StockName)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => Model.StockName)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					@Html.DisplayNameFor(modelItem => Model.StockSymbol)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => Model.StockSymbol)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					@Html.DisplayNameFor(modelItem => Model.EntryUserId)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => Model.EntryUserId)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					@Html.DisplayNameFor(modelItem => Model.EntryDate)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => Model.EntryDate)
+				</td>
+			</tr>
+		</table>
+		<div>
+			<input type="submit" value="Confirm" class="btn btn-danger" asp-route-id="@Model.Id" />
+			<input type="submit" value="Cancel" class="btn btn-default" asp-action="Index" asp-controller="Stock" />
+		</div>
+	</form>
+</div>

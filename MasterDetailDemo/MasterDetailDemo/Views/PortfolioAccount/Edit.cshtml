@@ -1,0 +1,46 @@
+﻿@model Entities.Models.PortfolioAccount
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+	ViewBag.Title = "Modify Portfolio Account";
+
+}
+<h3>@ViewBag.Title</h3>
+<div>
+
+	<hr />
+	<div class="col-md-12">
+		<form method="post" asp-action="Edit" asp-controller="PortfolioAccount">
+			<div class="form-group hidden">
+				<label asp-for="Id" class="hidden"></label>
+				<input type="text" asp-for="Id" />
+			</div>
+			<div class="form-group ">
+				<label asp-for="AccountNumber"></label>
+				<input type="text" asp-for="AccountNumber" />
+				<span asp-validation-for="AccountNumber" class="text-danger"></span>
+			</div>
+			<div class="form-group ">
+				<label asp-for="AccountName"></label>
+				<input type="text" asp-for="AccountName" />
+				<span asp-validation-for="AccountName" class="text-danger"></span>
+			</div>
+			<div class="form-group hidden ">
+				<label asp-for="EntryUserId"></label>
+				<input type="text" asp-for="EntryUserId" />
+				<span asp-validation-for="EntryUserId" class="text-danger"></span>
+			</div>
+			<div class="form-group hidden ">
+				<label asp-for="EntryDate"></label>
+				<input type="text" asp-for="EntryDate" />
+				<span asp-validation-for="EntryDate" class="text-danger"></span>
+			</div>
+			<div>
+				<input type="submit" value="Edit" class="btn btn-facebook" />
+				<input type="submit" value="Cancel" class="btn btn-default" asp-action="Index" asp-controller="PortfolioAccount" />
+			</div>
+
+		</form>
+	</div>
+
+</div>

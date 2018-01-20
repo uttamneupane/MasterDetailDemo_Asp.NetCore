@@ -1,0 +1,15 @@
+D:\Projects\MasterDetailDemo\MasterDetailDemo\bin\Debug\netcoreapp2.0\MasterDetailDemo.deps.json
+D:\Projects\MasterDetailDemo\MasterDetailDemo\bin\Debug\netcoreapp2.0\MasterDetailDemo.runtimeconfig.json
+D:\Projects\MasterDetailDemo\MasterDetailDemo\bin\Debug\netcoreapp2.0\MasterDetailDemo.runtimeconfig.dev.json
+D:\Projects\MasterDetailDemo\MasterDetailDemo\bin\Debug\netcoreapp2.0\MasterDetailDemo.dll
+D:\Projects\MasterDetailDemo\MasterDetailDemo\obj\Debug\netcoreapp2.0\MasterDetailDemo.csprojResolveAssemblyReference.cache
+D:\Projects\MasterDetailDemo\MasterDetailDemo\obj\Debug\netcoreapp2.0\MasterDetailDemo.csproj.CoreCompileInputs.cache
+D:\Projects\MasterDetailDemo\MasterDetailDemo\obj\Debug\netcoreapp2.0\MasterDetailDemo.AssemblyInfoInputs.cache
+D:\Projects\MasterDetailDemo\MasterDetailDemo\obj\Debug\netcoreapp2.0\MasterDetailDemo.AssemblyInfo.cs
+D:\Projects\MasterDetailDemo\MasterDetailDemo\bin\Debug\netcoreapp2.0\MasterDetailDemo.pdb
+D:\Projects\MasterDetailDemo\MasterDetailDemo\obj\Debug\netcoreapp2.0\MasterDetailDemo.dll
+D:\Projects\MasterDetailDemo\MasterDetailDemo\obj\Debug\netcoreapp2.0\MasterDetailDemo.pdb
+D:\Projects\MasterDetailDemo\MasterDetailDemo\bin\Debug\netcoreapp2.0\BusinessLayer.dll
+D:\Projects\MasterDetailDemo\MasterDetailDemo\bin\Debug\netcoreapp2.0\Entities.dll
+D:\Projects\MasterDetailDemo\MasterDetailDemo\bin\Debug\netcoreapp2.0\BusinessLayer.pdb
+D:\Projects\MasterDetailDemo\MasterDetailDemo\bin\Debug\netcoreapp2.0\Entities.pdb

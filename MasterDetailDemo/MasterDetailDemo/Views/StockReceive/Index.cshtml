@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Entities.ViewModels.StockReceiveMastViewModel>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+
+	ViewBag.Title = "Stock Receive List";
+}
+<h2>@ViewBag.Title</h2>
+
+<a asp-action="Create" asp-controller="StockReceive">Create Stock Receive</a>
+<div>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>Portfolio Number</th>
+				<th>Portfolio Name</th>
+				<th>Remarks</th>
+				<th>Value Date</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var item in Model)
+			{
+				<tr>
+					<td>@Html.DisplayFor(modelItem => item.PortfolioAccountNumber)</td>
+					<td>@Html.DisplayFor(modelItem => item.PortfolioAccountName)</td>
+					<td>@Html.DisplayFor(modelItem => item.Remarks)</td>
+					<td>@Html.DisplayFor(modelItem => item.ValueDate)</td>
+					<td>
+						@*<a asp-action="Detail" asp-controller="StockReceive">Detail</a>|*@
+						<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+						@*<a asp-action="Delete" asp-controller="StockReceive">Delete</a>*@
+
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+</div>

@@ -1,0 +1,46 @@
+﻿@model Entities.Models.Stock
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+	ViewBag.Title = "Modify Stock";
+
+}
+<h3>@ViewBag.Title</h3>
+<div class="row">
+
+	<hr />
+	<div class="col-md-12">
+		<form method="post" asp-action="Edit" asp-controller="Stock">
+			<div class="form-group hidden">
+				<label asp-for="Id" class="hidden"></label>
+				<input type="text" asp-for="Id" />
+			</div>
+			<div class="form-group ">
+				<label asp-for="StockName"></label>
+				<input type="text" asp-for="StockName" />
+				<span asp-validation-for="StockName" class="text-danger"></span>
+			</div>
+			<div class="form-group ">
+				<label asp-for="StockSymbol"></label>
+				<input type="text" asp-for="StockSymbol" />
+				<span asp-validation-for="StockSymbol" class="text-danger"></span>
+			</div>
+			<div class="form-group hidden ">
+				<label asp-for="EntryUserId"></label>
+				<input type="text" asp-for="EntryUserId" />
+				<span asp-validation-for="EntryUserId" class="text-danger"></span>
+			</div>
+			<div class="form-group hidden ">
+				<label asp-for="EntryDate"></label>
+				<input type="text" asp-for="EntryDate" />
+				<span asp-validation-for="EntryDate" class="text-danger"></span>
+			</div>
+			<div>
+				<input type="submit" value="Edit" class="btn btn-facebook" />
+				<input type="submit" value="Cancel" class="btn btn-default" asp-action="Index" asp-controller="Stock" />
+			</div>
+
+		</form>
+	</div>
+
+</div>
