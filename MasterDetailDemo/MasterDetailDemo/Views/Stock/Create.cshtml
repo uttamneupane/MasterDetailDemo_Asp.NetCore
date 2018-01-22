@@ -7,26 +7,34 @@
 	ViewBag.Title = "Create Stock";
 	//Layout = "_Layout";
 }
-<h3>@ViewBag.Title</h3>
-<a asp-action="Index" asp-controller="Stock">Back To Index</a>
-<div>
 
+<div class="form-horizontal">
+	<h3>@ViewBag.Title</h3>
+	<a asp-action="Index" asp-controller="Stock">Back To Index</a>
 	<hr />
-	<div class="col-md-12">
+	<div class="col-sm-12">
 		<form method="post" asp-action="Create" asp-controller="Stock" id="CreateForm">
 			<div class="hidden">
 				<label asp-for="Id" class="hidden"></label>
 				<input type="text" asp-for="Id" value="0" />
 			</div>
 
-			<div class="form-group">
-				<label asp-for="StockName"></label>
-				<input type="text" asp-for="StockName" />
+			<div class="form-group col-sm-12">
+				<div class="col-sm-2">
+					<label asp-for="StockName"></label>
+				</div>
+				<div class="col-sm-4">
+					<input type="text" asp-for="StockName" />
+				</div>
 				@*<span asp-validation-for="StockName" class="text-danger"></span>*@
 			</div>
-			<div class="form-group">
-				<label asp-for="StockSymbol"></label>
-				<input type="text" asp-for="StockSymbol" />
+			<div class="form-group col-sm-12">
+				<div class="col-sm-2">
+					<label asp-for="StockSymbol"></label>
+				</div>
+				<div class="col-sm-2">
+					<input type="text" asp-for="StockSymbol" />
+				</div>
 				@*<span asp-validation-for="StockSymbol" class="text-danger"></span>*@
 			</div>
 			<div class="hidden">

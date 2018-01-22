@@ -1,57 +1,50 @@
 ﻿@model Entities.ViewModels.StockReceiveMastViewModel
 @addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
 <style>
-	label {
-		width: 12%;
-	}
-
-	th {
-		text-align: center;
-	}
-
-	#PortfolioAccountName {
-		width: 25%;
-	}
-
-	#Remarks {
-		width: 40%;
-	}
-
-	#ValueDate {
-		width: 7.5%;
-	}
-
-	#StockName {
-		width: 100%
-	}
 </style>
 @{
 	ViewBag.Title = "Create Stock Receive";
 }
 <h2>@ViewBag.Title</h2>
 
-<div>
+<div class="form-horizontal">
 	<form method="post" id="CreateForm" asp-action="Create" asp-controller="StockReceive">
 		<div>
 
-			<div class="form-group">
-				<label>Value Date</label>
-				<input type="text" asp-for="ValueDate" placeholder="YYYY/MM/DD" />
+			<div class="form-group col-sm-12">
+				<div class="col-sm-2">
+					<label>Value Date</label>
+				</div>
+				<div class="col-sm-2">
+					<input type="text" asp-for="ValueDate" placeholder="YYYY/MM/DD" />
+				</div>
 			</div>
 			<div class="form-group">
-				<label>Portfolio Ac No.</label>
-				<select asp-items="@(new SelectList(@ViewBag.PortfolioAccountList,"Id","AccountNumber"))" id="selectPortfolioAccountName" onchange="getPortfolioAccountName();" asp-for="PortfolioAcId">
-					<option value="">Select</option>
-				</select>
+				<div class="col-sm-2">
+					<label>Portfolio Ac No.</label>
+				</div>
+				<div class="col-sm-2">
+					<select asp-items="@(new SelectList(@ViewBag.PortfolioAccountList,"Id","AccountNumber"))" id="selectPortfolioAccountName" onchange="getPortfolioAccountName();" asp-for="PortfolioAcId">
+						<option value="">Select</option>
+					</select>
+				</div>
 				@*<input type=" text" asp-for="PortfolioAccountNumber" />*@
 			</div>
 			<div class="form-group">
-				<label>Portfolio Ac Name</label>
-				<input type="text" asp-for="PortfolioAccountName" readonly="readonly" />
+				<div class="col-sm-2">
+					<label>Portfolio Ac Name</label>
+				</div>
+				<div class="col-sm-2">
+					<input type="text" asp-for="PortfolioAccountName" readonly="readonly" />
+				</div>
 			</div>
 			<div class="form-group">
-				<label>Remarks</label>
-				<input type="text" asp-for="Remarks" />
+				<div class="col-sm-2">
+					<label>Remarks</label>
+				</div>
+				<div class="col-sm-2">
+					<input type="text" asp-for="Remarks" />
+				</div>
 			</div>
 			<div>
 				<table id="StockReceiveDetail">
@@ -165,10 +158,9 @@
 	function addRow(index) {
 		var addedRow = '<tr>\
 						<td>\
-							<select  name="details[' + index + '].StockId" type="text" readonly="readonly">\
-							<option value="' + $('#StockName').val() + '">' + $('#StockName').find(":selected").text() + '</option>\
-							</select >\
-							</td >\
+								<input value="' + $('#StockName').val() + '" name="details[' + index + '].StockId" readonly=readonly class="hidden" />\
+								<input value="' + $('#StockName').find(":selected").text() + '" name="details[' + index + '].StockName" readonly=readonly />\
+						</td >\
 		<td><input value="' + $('#OwnerShipDate').val() + '" name="details[' + index + '].OwnerShipDate" readonly=readonly /></td>\
 						<td><input value="' + $('#Quantity').val() + '" name="details[' + index + '].Quantity" readonly=readonly /></td>\
 						<td><input value="' + parseFloat($('#Rate').val()).toFixed(2) + '" name="details[' + index + '].Rate" readonly="readonly" /></td>\
@@ -177,12 +169,10 @@
 						<td><a class="table-action-nav-btn btn btn-sm btn-delete" title="Delete" id="'+ index + '">Delete</a>\
 					</tr>\ ';
 		return addedRow;
-
 	}
 
 
 	function getPortfolioAccountName() {
-		debugger;
 		$.ajax({
 			url: "/StockReCeive/GetPortfolioAccountName",
 			type: 'GET',

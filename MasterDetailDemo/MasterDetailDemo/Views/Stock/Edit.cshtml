@@ -9,20 +9,28 @@
 <div class="row">
 
 	<hr />
-	<div class="col-md-12">
+	<div class="col-md-12 form-horizontal">
 		<form method="post" asp-action="Edit" asp-controller="Stock">
 			<div class="form-group hidden">
 				<label asp-for="Id" class="hidden"></label>
 				<input type="text" asp-for="Id" />
 			</div>
-			<div class="form-group ">
-				<label asp-for="StockName"></label>
-				<input type="text" asp-for="StockName" />
+			<div class="form-group col-sm-12 ">
+				<div class="col-sm-2">
+					<label asp-for="StockName"></label>
+				</div>
+				<div class="col-sm-3">
+					<input type="text" asp-for="StockName" />
+				</div>
 				<span asp-validation-for="StockName" class="text-danger"></span>
 			</div>
-			<div class="form-group ">
-				<label asp-for="StockSymbol"></label>
-				<input type="text" asp-for="StockSymbol" />
+			<div class="form-group col-sm-12 ">
+				<div class="col-sm-2">
+					<label asp-for="StockSymbol"></label>
+				</div>
+				<div class="col-sm-4">
+					<input type="text" asp-for="StockSymbol" />
+				</div>
 				<span asp-validation-for="StockSymbol" class="text-danger"></span>
 			</div>
 			<div class="form-group hidden ">
